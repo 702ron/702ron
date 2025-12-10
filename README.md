@@ -15,6 +15,15 @@ An intelligent support agent that converts natural language queries into structu
 
 ---
 
+### [AI Resume Parser & Applicant Tracker](https://github.com/702ron/resume-parser-airtable)
+**Automated recruitment pipeline with GPT-4 resume extraction**
+
+Workflow that monitors Gmail for job applications, extracts resume data using GPT-4 (contact info, work history, highlights), stores files in Google Drive, and organizes applicants in Airtable.
+
+**Tech:** n8n | OpenAI GPT-4 | Gmail | Google Drive | Airtable
+
+---
+
 ### [Automated Email Campaign Generator](https://github.com/702ron/auction-email-automation)
 **n8n workflow for scheduled merchandising emails**
 
@@ -26,11 +35,11 @@ Cron-driven automation that fetches trending items from Airtable, applies select
 
 ## Tech Stack
 
-**AI/ML:** OpenAI API, LangChain, Multi-Agent Systems, Prompt Engineering
+**AI/ML:** OpenAI API, GPT-4 Vision, LangChain, Multi-Agent Systems, Prompt Engineering
 **Automation:** n8n, Custom Workflows, Webhook Integrations
 **Backend:** Python, Node.js, PostgreSQL, REST APIs
-**Data:** Airtable, Supabase, CSV/JSON Processing
-**Frontend:** Open WebUI, Custom Chat Interfaces
+**Data:** Airtable, Supabase, Google Drive, CSV/JSON Processing
+**Frontend:** Open WebUI, MJML Email Templates, Custom Chat Interfaces
 
 ---
 
