@@ -15,6 +15,15 @@ An intelligent support agent that converts natural language queries into structu
 
 ---
 
+### [Automated Email Campaign Generator](https://github.com/702ron/auction-email-automation)
+**n8n workflow for scheduled merchandising emails**
+
+Cron-driven automation that fetches trending items from Airtable, applies selection logic and de-duplication, fills responsive MJML templates, and delivers campaigns via Mailchimp. Includes dry-run previews, UTM tracking, and error notifications.
+
+**Tech:** n8n | Airtable | MJML | Mailchimp | Gmail
+
+---
+
 ## Tech Stack
 
 **AI/ML:** OpenAI API, LangChain, Multi-Agent Systems, Prompt Engineering
