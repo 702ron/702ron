@@ -24,6 +24,15 @@ Unified API that automatically detects identifier types (ASIN, UPC, FNSKU, URL, 
 
 ---
 
+### [Refund Returns Processing System](https://github.com/702ron/refund-returns-processing)
+**Automated returns workflow with Stripe refunds and message queuing**
+
+End-to-end returns processing system triggered from Airtable. Uses RabbitMQ for reliable message queuing, browserless automation for external bid system voids, and Stripe API for refund processing. Supports multi-location inventory with comprehensive audit logging.
+
+**Tech:** n8n | RabbitMQ | Stripe API | Airtable | Browserless
+
+---
+
 ### [AI Resume Parser & Applicant Tracker](https://github.com/702ron/resume-parser-airtable)
 **Automated recruitment pipeline with GPT-4 resume extraction**
 
@@ -45,8 +54,8 @@ Cron-driven automation that fetches trending items from Airtable, applies select
 ## Tech Stack
 
 **AI/ML:** OpenAI API, GPT-4 Vision, Google Gemini, LangChain, Multi-Agent Systems, Prompt Engineering
-**Automation:** n8n, Custom Workflows, Webhook Integrations
-**Backend:** Python, Node.js, PostgreSQL, REST APIs
+**Automation:** n8n, Custom Workflows, Webhook Integrations, RabbitMQ
+**Backend:** Python, Node.js, PostgreSQL, REST APIs, Stripe API
 **Data:** Airtable, NocoDB, Supabase, Google Drive, CSV/JSON Processing
 **Frontend:** Open WebUI, MJML Email Templates, Custom Chat Interfaces
 
