@@ -6,6 +6,15 @@ Building intelligent systems that solve real business problems.
 
 ## Featured Projects
 
+### [AI Label Designer](https://github.com/702ron/1932-label-wizard) | [Live Demo](https://labelwizard.702market.com/)
+**Custom whiskey label creator with AI-powered image generation**
+
+Full-stack web application that creates personalized whiskey barrel labels through a 4-step wizard. Features AI logo generation, custom background creation, real-time fine-tuning, and photorealistic bottle mockups.
+
+**Tech:** React | FastAPI | TypeScript | Python | OpenRouter | Google Gemini | Redis | PostgreSQL | MinIO
+
+---
+
 ### [Airtable Chat Support Agent](https://github.com/702ron/airtable-chat-support-agent)
 **AI-powered natural language interface for business data**
 
@@ -53,11 +62,12 @@ Cron-driven automation that fetches trending items from Airtable, applies select
 
 ## Tech Stack
 
-**AI/ML:** OpenAI API, GPT-4 Vision, Google Gemini, LangChain, Multi-Agent Systems, Prompt Engineering
+**AI/ML:** OpenAI API, GPT-4 Vision, Google Gemini, OpenRouter, LangChain, Multi-Agent Systems, Prompt Engineering
 **Automation:** n8n, Custom Workflows, Webhook Integrations, RabbitMQ
-**Backend:** Python, Node.js, PostgreSQL, REST APIs, Stripe API
-**Data:** Airtable, NocoDB, Supabase, Google Drive, CSV/JSON Processing
-**Frontend:** Open WebUI, MJML Email Templates, Custom Chat Interfaces
+**Backend:** Python, FastAPI, Node.js, PostgreSQL, Redis, REST APIs, Stripe API
+**Frontend:** React, TypeScript, Vite, shadcn/ui, Open WebUI, MJML Email Templates
+**Data:** Airtable, NocoDB, MinIO, Supabase, Google Drive, CSV/JSON Processing
+**Infrastructure:** Docker, Coolify, Self-hosted Deployments
 
 ---
 
