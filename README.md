@@ -15,6 +15,15 @@ An intelligent support agent that converts natural language queries into structu
 
 ---
 
+### [Product Info Lookup API](https://github.com/702ron/product-info-lookup)
+**Universal product data retrieval with multi-retailer integration**
+
+Unified API that automatically detects identifier types (ASIN, UPC, FNSKU, URL, LOT) and retrieves product data from Amazon, Walmart, Target, and Home Depot. Features intelligent caching, AI-powered categorization, and fallback web scraping.
+
+**Tech:** n8n | NocoDB | Google Gemini | OpenAI GPT-4 | Firecrawl | Airtable
+
+---
+
 ### [AI Resume Parser & Applicant Tracker](https://github.com/702ron/resume-parser-airtable)
 **Automated recruitment pipeline with GPT-4 resume extraction**
 
@@ -35,10 +44,10 @@ Cron-driven automation that fetches trending items from Airtable, applies select
 
 ## Tech Stack
 
-**AI/ML:** OpenAI API, GPT-4 Vision, LangChain, Multi-Agent Systems, Prompt Engineering
+**AI/ML:** OpenAI API, GPT-4 Vision, Google Gemini, LangChain, Multi-Agent Systems, Prompt Engineering
 **Automation:** n8n, Custom Workflows, Webhook Integrations
 **Backend:** Python, Node.js, PostgreSQL, REST APIs
-**Data:** Airtable, Supabase, Google Drive, CSV/JSON Processing
+**Data:** Airtable, NocoDB, Supabase, Google Drive, CSV/JSON Processing
 **Frontend:** Open WebUI, MJML Email Templates, Custom Chat Interfaces
 
 ---
