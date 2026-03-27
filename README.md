@@ -100,4 +100,4 @@ I build AI-powered automation systems that bridge the gap between complex data a
 
 My sweet spot is taking a messy, manual business process and turning it into a reliable, automated pipeline that runs itself. Whether that's an AI agent that answers questions about your documents, a scraper that feeds pricing intelligence to your inventory system, or an n8n workflow that processes hundreds of daily transactions — I build systems that work.
 
-**[Hire me on Upwork](https://www.upwork.com/)** · **[ron@702auctions.com](mailto:ron@702auctions.com)**
+**[Hire me on Upwork](https://www.upwork.com/)** 
