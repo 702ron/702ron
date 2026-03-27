@@ -6,7 +6,7 @@
 
 Full-stack whiskey barrel label creator that turns simple text input into photorealistic bottle mockups. A 4-step wizard handles logo generation, background creation, real-time fine-tuning, and final mockup rendering — no design skills needed.
 
-[![Landing Page](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/01-landing.png)](https://labelwizard.702market.com/)
+[![Landing Page](./screenshots/01-landing.png)](https://labelwizard.702market.com/)
 
 ## What I Built
 
@@ -20,15 +20,15 @@ Full-stack whiskey barrel label creator that turns simple text input into photor
 
 | Logo Generation | Background Creation |
 |:-:|:-:|
-| [![Logo Generation](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/02-logo-generation.png)](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/02-logo-generation.png) | [![Background Generation](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/03-background-generation.png)](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/03-background-generation.png) |
+| [![Logo Generation](./screenshots/02-logo-generation.png)](./screenshots/02-logo-generation.png) | [![Background Generation](./screenshots/03-background-generation.png)](./screenshots/03-background-generation.png) |
 
 | Fine-Tuning | Final Mockup |
 |:-:|:-:|
-| [![Background Tuning](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/04-background-tuning.png)](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/04-background-tuning.png) | [![Final Mockup](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/05-final-mockup.png)](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/05-final-mockup.png) |
+| [![Background Tuning](./screenshots/04-background-tuning.png)](./screenshots/04-background-tuning.png) | [![Final Mockup](./screenshots/05-final-mockup.png)](./screenshots/05-final-mockup.png) |
 
 | Label Output | Bottle Mockup |
 |:-:|:-:|
-| [![Label](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/06-label-output.png)](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/06-label-output.png) | [![Mockup](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/07-bottle-mockup.png)](https://raw.githubusercontent.com/702ron/1932-label-wizard/main/screenshots/07-bottle-mockup.png) |
+| [![Label](./screenshots/06-label-output.png)](./screenshots/06-label-output.png) | [![Mockup](./screenshots/07-bottle-mockup.png)](./screenshots/07-bottle-mockup.png) |
 
 ## Architecture
 

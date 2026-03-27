@@ -6,7 +6,7 @@
 
 AI-powered support agent that converts plain English questions into intelligent Airtable lookups. Query inventory levels, track sales history, process returns — all through conversational chat with barcode image recognition and multi-table awareness.
 
-![n8n Workflow](https://raw.githubusercontent.com/702ron/airtable-chat-support-agent/main/screenshots/n8n_workflow.png)
+![n8n Workflow](./screenshots/n8n_workflow.png)
 
 ## What I Built
 
@@ -20,11 +20,11 @@ AI-powered support agent that converts plain English questions into intelligent 
 
 | Chat Interface | Execution View |
 |:-:|:-:|
-| [![Chat UI](https://raw.githubusercontent.com/702ron/airtable-chat-support-agent/main/screenshots/chat_ui.png)](https://raw.githubusercontent.com/702ron/airtable-chat-support-agent/main/screenshots/chat_ui.png) | [![Execution](https://raw.githubusercontent.com/702ron/airtable-chat-support-agent/main/screenshots/execution_view.png)](https://raw.githubusercontent.com/702ron/airtable-chat-support-agent/main/screenshots/execution_view.png) |
+| [![Chat UI](./screenshots/chat_ui.png)](./screenshots/chat_ui.png) | [![Execution](./screenshots/execution_view.png)](./screenshots/execution_view.png) |
 
 | Airtable Data | Query Results |
 |:-:|:-:|
-| [![Airtable](https://raw.githubusercontent.com/702ron/airtable-chat-support-agent/main/screenshots/airtable_inventory.png)](https://raw.githubusercontent.com/702ron/airtable-chat-support-agent/main/screenshots/airtable_inventory.png) | [![Results](https://raw.githubusercontent.com/702ron/airtable-chat-support-agent/main/screenshots/result_output.png)](https://raw.githubusercontent.com/702ron/airtable-chat-support-agent/main/screenshots/result_output.png) |
+| [![Airtable](./screenshots/airtable_inventory.png)](./screenshots/airtable_inventory.png) | [![Results](./screenshots/result_output.png)](./screenshots/result_output.png) |
 
 ## Architecture
 

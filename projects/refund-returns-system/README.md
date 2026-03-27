@@ -6,7 +6,7 @@
 
 End-to-end returns automation: Airtable form → RabbitMQ queue → n8n orchestration → Browserless void → Stripe refund → immutable audit trail. Handles 6 return categories, multi-location inventory, and idempotent processing that guarantees no duplicate refunds.
 
-[![Void on Bid Workflow](https://raw.githubusercontent.com/702ron/refund-returns-processing/main/screenshots/void-on-bid-workflow.png)](https://raw.githubusercontent.com/702ron/refund-returns-processing/main/screenshots/void-on-bid-workflow.png)
+[![Void on Bid Workflow](./screenshots/void-on-bid-workflow.png)](./screenshots/void-on-bid-workflow.png)
 
 ## What I Built
 
@@ -20,11 +20,11 @@ End-to-end returns automation: Airtable form → RabbitMQ queue → n8n orchestr
 
 | Stripe Refund Workflow | RabbitMQ Queue Workflow |
 |:-:|:-:|
-| [![Stripe Refund](https://raw.githubusercontent.com/702ron/refund-returns-processing/main/screenshots/stripe-refund-workflow.png)](https://raw.githubusercontent.com/702ron/refund-returns-processing/main/screenshots/stripe-refund-workflow.png) | [![RabbitMQ Queue](https://raw.githubusercontent.com/702ron/refund-returns-processing/main/screenshots/rabbitmq-queue-workflow.png)](https://raw.githubusercontent.com/702ron/refund-returns-processing/main/screenshots/rabbitmq-queue-workflow.png) |
+| [![Stripe Refund](./screenshots/stripe-refund-workflow.png)](./screenshots/stripe-refund-workflow.png) | [![RabbitMQ Queue](./screenshots/rabbitmq-queue-workflow.png)](./screenshots/rabbitmq-queue-workflow.png) |
 
 | Airtable Returns View |
 |:-:|
-| [![Airtable Returns](https://raw.githubusercontent.com/702ron/refund-returns-processing/main/screenshots/airtable-returns-view.png)](https://raw.githubusercontent.com/702ron/refund-returns-processing/main/screenshots/airtable-returns-view.png) |
+| [![Airtable Returns](./screenshots/airtable-returns-view.png)](./screenshots/airtable-returns-view.png) |
 
 ## Architecture
 

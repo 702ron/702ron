@@ -6,7 +6,7 @@
 
 Automated recruitment pipeline that monitors Gmail for resume attachments, extracts 8 structured fields with GPT-4, archives PDFs to Google Drive, and populates a searchable Airtable candidate tracker. Zero manual data entry.
 
-![n8n Workflow](https://raw.githubusercontent.com/702ron/resume-parser-airtable/main/screenshots/n8n_workflow.png)
+![n8n Workflow](./screenshots/n8n_workflow.png)
 
 ## What I Built
 
@@ -18,7 +18,7 @@ Automated recruitment pipeline that monitors Gmail for resume attachments, extra
 
 ## Screenshots
 
-![Airtable View](https://raw.githubusercontent.com/702ron/resume-parser-airtable/main/screenshots/airtable.png)
+![Airtable View](./screenshots/airtable.png)
 
 ## Architecture
 

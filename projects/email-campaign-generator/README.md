@@ -6,7 +6,7 @@
 
 Cron-driven email automation that fetches trending inventory from Airtable, applies selection logic and deduplication, fills responsive MJML templates, and delivers via Mailchimp with UTM tracking and dry-run previews.
 
-![n8n Workflow](https://raw.githubusercontent.com/702ron/auction-email-automation/main/screenshots/n8n_workflow.png)
+![n8n Workflow](./screenshots/n8n_workflow.png)
 
 ## What I Built
 
@@ -21,7 +21,7 @@ Cron-driven email automation that fetches trending inventory from Airtable, appl
 
 | Generated Email | Website Integration |
 |:-:|:-:|
-| [![Generated Email](https://raw.githubusercontent.com/702ron/auction-email-automation/main/screenshots/generated%20email.png)](https://raw.githubusercontent.com/702ron/auction-email-automation/main/screenshots/generated%20email.png) | [![Website](https://raw.githubusercontent.com/702ron/auction-email-automation/main/screenshots/website_screenshot.png)](https://raw.githubusercontent.com/702ron/auction-email-automation/main/screenshots/website_screenshot.png) |
+| [![Generated Email](./screenshots/generated%20email.png)](./screenshots/generated%20email.png) | [![Website](./screenshots/website_screenshot.png)](./screenshots/website_screenshot.png) |
 
 ## Architecture
 

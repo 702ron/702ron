@@ -6,7 +6,7 @@
 
 Universal product data API that accepts any identifier — ASIN, UPC, FNSKU, URL, or LOT number — and retrieves structured information from Amazon, Walmart, Target, and Home Depot. Intelligent fallback handling, AI categorization, and smart caching ensure sub-2-second lookups.
 
-[![Main Workflow](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/main-workflow.png)](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/main-workflow.png)
+[![Main Workflow](./screenshots/main-workflow.png)](./screenshots/main-workflow.png)
 
 ## What I Built
 
@@ -20,15 +20,15 @@ Universal product data API that accepts any identifier — ASIN, UPC, FNSKU, URL
 
 | ASIN Tool Workflow | UPC Tool Workflow |
 |:-:|:-:|
-| [![ASIN Tool](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/asin-tool-workflow.png)](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/asin-tool-workflow.png) | [![UPC Tool](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/upc-tool-workflow.png)](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/upc-tool-workflow.png) |
+| [![ASIN Tool](./screenshots/asin-tool-workflow.png)](./screenshots/asin-tool-workflow.png) | [![UPC Tool](./screenshots/upc-tool-workflow.png)](./screenshots/upc-tool-workflow.png) |
 
 | FNSKU Tool Workflow | URL Tool Workflow |
 |:-:|:-:|
-| [![FNSKU Tool](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/fnsku-tool-workflow.png)](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/fnsku-tool-workflow.png) | [![URL Tool](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/url-tool-workflow.png)](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/url-tool-workflow.png) |
+| [![FNSKU Tool](./screenshots/fnsku-tool-workflow.png)](./screenshots/fnsku-tool-workflow.png) | [![URL Tool](./screenshots/url-tool-workflow.png)](./screenshots/url-tool-workflow.png) |
 
 | Lot Lookup Workflow | NocoDB Cache Table |
 |:-:|:-:|
-| [![Lot Lookup](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/lot-lookup-workflow.png)](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/lot-lookup-workflow.png) | [![NocoDB Cache](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/nocodb-cache-table.png)](https://raw.githubusercontent.com/702ron/product-info-lookup/main/screenshots/nocodb-cache-table.png) |
+| [![Lot Lookup](./screenshots/lot-lookup-workflow.png)](./screenshots/lot-lookup-workflow.png) | [![NocoDB Cache](./screenshots/nocodb-cache-table.png)](./screenshots/nocodb-cache-table.png) |
 
 ## Architecture
 
