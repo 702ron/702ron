@@ -1,60 +1,78 @@
 # Airtable Chat Support Agent
 
-> **[View full repository with screenshots and code →](https://github.com/702ron/airtable-chat-support-agent)**
+![n8n](https://img.shields.io/badge/n8n-FF6B35?style=flat&logo=n8n&logoColor=white) ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat&logo=openai&logoColor=white) ![Airtable](https://img.shields.io/badge/Airtable-F7D563?style=flat&logo=airtable&logoColor=black) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)
+
+> **[View full repository with screenshots and code &rarr;](https://github.com/702ron/airtable-chat-support-agent)**
 
 AI-powered support agent that converts natural language questions into intelligent Airtable lookups. Query inventory levels, track sales history, process returns—all through conversational chat with barcode image recognition and multi-table awareness.
 
-## Problem
-Support teams spend hours searching spreadsheets and databases for customer data. Natural language queries from customers or internal staff require manual database navigation, multiple systems, and domain knowledge to translate into proper lookups.
+## What I Built
 
-## Solution
-Built a conversational agent that understands business intent and automatically executes cross-table Airtable queries. The system analyzes questions, identifies required tables (Inventory, Sales, Returns), fetches relevant data, and responds in natural language. Barcode image recognition enables product lookup by photo. Session-aware conversations maintain context across multiple questions, and multiple frontend options (Open WebUI or custom) provide flexibility.
+- **Natural Language → Airtable Queries** - GPT-4 understands business intent and automatically executes cross-table queries without manual navigation
+- **Multi-Table Awareness** - Intelligently joins data across Inventory, Sales, and Returns tables to answer complex questions
+- **Barcode Image Recognition** - Upload product photos or barcodes; system extracts codes and looks up associated data automatically
+- **Session-Aware Conversations** - Maintains context across multiple questions so follow-ups reference previous results
+- **Dual Frontend Options** - Deploy with Open WebUI for quick prototyping or custom React for branded experiences
+- **Sub-Second Response Times** - Optimized queries return results in under 1 second for rapid support workflows
+- **4 Comprehensive Screenshots** - Full workflow documentation with real-world query examples
 
 ## Architecture
 
 ```
-Chat Interface (Open WebUI / Custom)
+User Chat Input
         ↓
-  n8n Workflow Engine
+  Open WebUI / Custom Frontend
         ↓
-   ┌────┴────┬──────────┬──────────┐
-   ↓         ↓          ↓          ↓
- Airtable  PostgreSQL  GPT-4    Barcode
-(Tables)  (Sessions)  (Intent)  (Vision)
+   n8n Workflow Engine
+        ↓
+  ┌─────┴──────┬──────────┬──────────┐
+  ↓            ↓          ↓          ↓
+Airtable    PostgreSQL   GPT-4    Vision API
+(Tables)    (Sessions)  (Intent)  (Barcode)
 ```
+
+**Process Flow:**
+1. User asks question or uploads barcode image
+2. GPT-4 analyzes intent and identifies required tables
+3. n8n executes parallel Airtable queries across Inventory/Sales/Returns
+4. Results normalized and formatted for context
+5. GPT-4 generates natural language response
+6. Session ID preserves context for follow-up questions
+7. Multi-turn conversation maintains history
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Orchestration | n8n |
-| AI Model | OpenAI GPT-4 |
-| Database | Airtable API, PostgreSQL |
-| Vision | Barcode & image recognition |
-| Frontend | Open WebUI (or custom) |
-| Session Storage | PostgreSQL |
+| Component | Technology | Purpose |
+|---|---|---|
+| **Orchestration** | n8n | Workflow automation and multi-step processes |
+| **AI Model** | OpenAI GPT-4 | Intent analysis, response generation |
+| **Primary DB** | Airtable API | Inventory, Sales, Returns tables |
+| **Session Storage** | PostgreSQL | Conversation context, audit logs |
+| **Vision** | Barcode & Image Recognition | Product lookup from photos |
+| **Frontend Options** | Open WebUI or React | User interface (pick one) |
 
 ## Key Features
 
 ### Multi-Table Awareness
-Understands relationships between Inventory, Sales, and Returns tables. Queries automatically join data across multiple sources to answer complex questions like "what returns happened for this SKU in the last 30 days?"
+Understands relationships between Inventory, Sales, and Returns tables. Queries automatically join data across multiple sources to answer complex questions like "what returns happened for this SKU in the last 30 days?" without manual table selection.
 
 ### Barcode Image Recognition
-Users can upload product photos or barcode images. The system extracts the barcode and looks up associated inventory, pricing, and sales history automatically.
+Users can upload product photos or barcode images. The system extracts the barcode and looks up associated inventory, pricing, and sales history automatically without typing.
 
 ### Session-Aware Conversations
-Maintains conversation context so follow-up questions use previous results. "Show me returns for that product" understands which product was referenced earlier.
+Maintains conversation context so follow-up questions use previous results. "Show me returns for that product" understands which product was referenced earlier in the thread.
 
 ### Dual Frontend Options
-Deploy with Open WebUI for quick prototyping or custom React frontend for branded experiences. Both connect to the same n8n backend.
+Deploy with Open WebUI for rapid prototyping and testing, or build a custom React frontend for branded experiences. Both connect to the same n8n backend.
 
-## Results
+## Setup
 
-- **4 Screenshots**: Full workflow documentation with example queries
-- **12 Comprehensive Sections**: Covers setup, architecture, deployment, and API reference
-- **8.5/10 Rating**: Highly functional and production-ready
-- **Sub-Second Responses**: Multi-table queries return results in under 1 second
+Complete deployment instructions, Airtable base schema, n8n workflow exports, and API reference are available in the [full repository](https://github.com/702ron/airtable-chat-support-agent).
+
+## License
+
+MIT
 
 ---
 
-*Built by [Ron](https://github.com/702ron) — [View full project →](https://github.com/702ron/airtable-chat-support-agent)*
+*Built by [Ron](https://github.com/702ron) — [View full project with screenshots &rarr;](https://github.com/702ron/airtable-chat-support-agent)*

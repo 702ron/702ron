@@ -1,69 +1,89 @@
 # Email Campaign Generator
 
-> **[View full repository with screenshots and code →](https://github.com/702ron/auction-email-automation)**
+![n8n](https://img.shields.io/badge/n8n-FF6B35?style=flat&logo=n8n&logoColor=white) ![Airtable](https://img.shields.io/badge/Airtable-F7D563?style=flat&logo=airtable&logoColor=black) ![Mailchimp](https://img.shields.io/badge/Mailchimp-FFE01B?style=flat&logo=mailchimp&logoColor=black) ![MJML](https://img.shields.io/badge/MJML-Responsive%20Email-blue)
+
+> **[View full repository with screenshots and code &rarr;](https://github.com/702ron/auction-email-automation)**
 
 Cron-driven email automation that fetches trending inventory items from Airtable, applies selection logic, fills responsive MJML email templates, and delivers via Mailchimp. Features scheduled execution, UTM tracking, dry-run previews, deduplication, and error notifications.
 
-## Problem
-Marketing teams manually assemble promotional emails—selecting items, writing copy, building templates, and coordinating delivery. High-volume campaigns (weekly or daily) are time-consuming and error-prone. Testing changes requires rebuilding entire campaigns.
+## What I Built
 
-## Solution
-Built a scheduled automation system that runs on cron intervals (hourly, daily, weekly). Fetches trending products from Airtable, applies merchandising rules (price range, category filters, popularity thresholds), deduplicates against previous campaigns, fills responsive MJML templates with product data, previews results, and sends via Mailchimp. UTM parameters auto-populate for analytics. Dry-run mode enables testing without sending.
+- **Scheduled Cron Execution** - Runs on custom intervals (hourly, daily, weekly) without manual triggering
+- **Airtable Inventory Sync** - Fetches trending products with real-time pricing and stock levels
+- **Intelligent Selection Rules** - Configurable filters by price range, category, stock level, and popularity
+- **Smart Deduplication** - Prevents same products from appearing in consecutive campaigns; maintains recipient fatigue thresholds
+- **Responsive MJML Templates** - Mobile-perfect email design with auto-populated product images, pricing, and CTAs
+- **UTM Analytics Tracking** - Auto-generates campaign/source/medium parameters for precise ROI attribution
+- **Dry-Run Preview Mode** - Test emails before sending to live audience; no sends on failed rules
+- **Error Notifications** - Slack/email alerts on delivery failures or rule conflicts
+- **Production Analytics** - Mailchimp integration with open rates, click tracking, and subscriber health monitoring
+- **2 Comprehensive Screenshots** - Campaign output examples and Mailchimp integration
 
 ## Architecture
 
 ```
-Cron Trigger
-    ↓
-Fetch Airtable Inventory
-    ↓
+Cron Trigger (Scheduled)
+        ↓
+Airtable Inventory Query
+        ↓
 Apply Selection Rules
-    ↓
+(Price/Category/Stock/Popularity)
+        ↓
 Deduplication Check
-    ↓
-MJML Template Fill
-    ↓
-    ├→ Dry-Run Preview
-    └→ Mailchimp Delivery
-    ↓
-    ├→ Success Notification
-    └→ Error Handling
+        ↓
+    ┌───┴───┬──────────┐
+    ↓       ↓          ↓
+ MJML    Dry-Run   Mailchimp
+Template  Preview   Delivery
+ Fill               (Send)
 ```
+
+**Process Flow:**
+1. Cron trigger fires at scheduled time
+2. Fetch products from Airtable with filters (price, category, stock)
+3. Apply merchandising rules (highlight new items, prioritize sales)
+4. Check against previous campaign data for deduplication
+5. Fill MJML template with product data (images, pricing, links)
+6. Generate UTM parameters for each product link
+7. Render HTML and run dry-run test (optional)
+8. Send via Mailchimp to audience list
+9. Log delivery status and metrics
+10. Send completion/error notification
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Scheduling | Cron (Linux) or n8n |
-| Data Source | Airtable API |
-| Selection Logic | Custom rules engine |
-| Email Template | MJML |
-| Delivery | Mailchimp API |
-| Analytics | UTM parameters |
-| Notifications | SendGrid / SMTP |
+| Component | Technology | Purpose |
+|---|---|---|
+| **Scheduling** | Cron (Linux) or n8n | Recurring execution on custom intervals |
+| **Data Source** | Airtable API | Product inventory, pricing, stock levels |
+| **Selection Logic** | Custom Rules Engine | Filter, rank, and prioritize products |
+| **Email Template** | MJML | Mobile-responsive design with auto-fill |
+| **Email Delivery** | Mailchimp API | Campaign sending and subscriber management |
+| **Analytics** | UTM Parameters | Campaign/product-level ROI attribution |
+| **Notifications** | SendGrid / SMTP | Delivery status and error alerts |
 
 ## Key Features
 
 ### Intelligent Item Selection
-Configurable rules filter inventory by price, category, stock level, and popularity. New items highlighted, sale items prioritized, and seasonal products rotated automatically.
+Configurable rules filter inventory by price range, category, stock level, and popularity score. New items automatically highlighted, sale items prioritized, and seasonal products rotated based on date ranges.
 
 ### Responsive Email Templates
-MJML templates render perfectly on mobile and desktop. Product images, pricing, and CTAs auto-populate from Airtable data.
+MJML templates render perfectly on mobile and desktop without media queries. Product images, pricing, descriptions, and CTAs auto-populate from Airtable data without manual copy-pasting.
 
-### Deduplication Logic
-Tracks sent items and prevents the same products from appearing in consecutive campaigns. Maintains email recipient fatigue thresholds and prevents campaign redundancy.
+### Smart Deduplication Logic
+Tracks sent items and prevents the same products from appearing in consecutive campaigns. Maintains recipient fatigue thresholds and prevents campaign redundancy—critical for maintaining list health and open rates.
 
-### Analytics Tracking
-Auto-generates UTM parameters (source, medium, campaign) for each product link. Enables precise ROI attribution in Google Analytics and Mailchimp reporting.
+### Advanced Analytics Tracking
+Auto-generates UTM parameters (source, medium, campaign) for each product link. Enables precise ROI attribution in Google Analytics and Mailchimp reporting. Track which campaigns and products drive the most revenue.
 
-## Results
+## Setup
 
-- **2 Screenshots**: Campaign output examples and Mailchimp integration
-- **10 Sections**: Setup, configuration, troubleshooting, and performance tuning
-- **7.5/10 Rating**: Reliable for e-commerce and auction-style platforms
-- **Error Notifications**: Slack/email alerts on delivery failures or rule conflicts
-- **Dry-Run Testing**: Preview emails before sending to live audience
+Complete Cron configuration, Airtable schema, MJML template examples, Mailchimp API setup, rule engine documentation, and performance tuning are available in the [full repository](https://github.com/702ron/auction-email-automation).
+
+## License
+
+MIT
 
 ---
 
-*Built by [Ron](https://github.com/702ron) — [View full project →](https://github.com/702ron/auction-email-automation)*
+*Built by [Ron](https://github.com/702ron) — [View full project with screenshots &rarr;](https://github.com/702ron/auction-email-automation)*

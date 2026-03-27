@@ -1,68 +1,82 @@
 # n8n Plain.com Community Node
 
-> **[View full repository with screenshots and code →](https://github.com/702ron/n8n-plain-node)**
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white) ![n8n](https://img.shields.io/badge/n8n-FF6B35?style=flat&logo=n8n&logoColor=white) ![GraphQL](https://img.shields.io/badge/GraphQL-E10098?style=flat&logo=graphql&logoColor=white)
+
+> **[View full repository with screenshots and code &rarr;](https://github.com/702ron/n8n-plain-node)**
 
 Open-source n8n community node for Plain.com customer support platform. GraphQL API integration covering 6 resources with full CRUD operations. Includes Plain Trigger node for real-time event subscriptions. Published to npm with TypeScript support and comprehensive documentation.
 
-## Problem
-n8n users managing customer support with Plain.com lack native integration. Building custom GraphQL queries in HTTP nodes is repetitive, error-prone, and requires deep API knowledge. Real-time event handling requires manual webhook setup and GraphQL subscription logic.
+## What I Built
 
-## Solution
-Engineered a production-ready n8n community node that abstracts Plain.com's GraphQL API into intuitive node operations. Supports 6 resources: Customers, Conversations, Inboxes, Settings, Thread Attachments, and Events. Both regular node (for workflow actions) and Trigger node (for real-time subscriptions) included. Written in TypeScript, tested, and published to npm for easy installation.
+- **6-Resource Coverage** - Complete GraphQL integration: Customers, Conversations, Inboxes, Settings, Thread Attachments, Events
+- **Full CRUD Operations** - Create, read, update, delete customers and manage all support platform features
+- **Plain Trigger Node** - Real-time event subscriptions via GraphQL subscriptions without polling
+- **TypeScript First** - Fully typed implementation with IDE autocomplete and compile-time safety
+- **npm Published** - Installable as a community node directly in n8n; receives updates independently
+- **MIT Licensed** - Open-source with contributor guidelines for community improvements
+- **Comprehensive Docs** - API reference, setup instructions, and real-world usage examples
+- **Production-Ready** - Tested, validated, and recommended for enterprise customer support workflows
 
 ## Architecture
 
 ```
 n8n Workflow
-    ↓
+     ↓
 Plain Node Interface
-    ↓
+  (CRUD Operations)
+     ↓
 GraphQL Query Builder
-    ↓
-Plain.com API
-    ↓
-    ├→ Customers
-    ├→ Conversations
-    ├→ Inboxes
-    ├→ Settings
-    ├→ Thread Attachments
-    └→ Events (Trigger)
+     ↓
+Plain.com GraphQL API
+     ↓
+   ┌─┴──┬────────┬───────┬─────────┬──────────┬────────┐
+   ↓    ↓        ↓       ↓         ↓          ↓        ↓
+Customers Conversations Inboxes Settings Attachments Events
+(Crud)    (Query/Get)   (Manage) (Update)  (Upload) (Trigger)
 ```
+
+**Process Flow:**
+1. n8n workflow node triggered (regular node) or event fires (trigger node)
+2. Node translates operation to GraphQL query/mutation
+3. Sends authenticated request to Plain.com API
+4. API processes and returns structured JSON response
+5. n8n passes data to next workflow step
+6. For triggers: subscriptions receive real-time events and execute workflow
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Node Framework | n8n Community Nodes SDK |
-| Language | TypeScript |
-| API Protocol | GraphQL |
-| Package Manager | npm |
-| API Source | Plain.com GraphQL |
-| Authentication | API Key |
-| Testing | Jest |
+| Component | Technology | Purpose |
+|---|---|---|
+| **Framework** | n8n Community Nodes SDK | Node development and lifecycle |
+| **Language** | TypeScript | Type-safe implementation, IDE support |
+| **API Protocol** | GraphQL | Query language for Plain.com API |
+| **Authentication** | API Key | Plain.com credential management |
+| **Package Manager** | npm | Distribution and version management |
+| **Testing** | Jest | Unit and integration test coverage |
+| **Documentation** | Markdown + JSDoc | API reference and examples |
 
 ## Key Features
 
-### 6-Resource Coverage
-Complete GraphQL coverage of Plain.com: create/read/update customers, query conversations, manage inboxes, update settings, attach files, and subscribe to real-time events.
+### 6-Resource Complete Coverage
+Comprehensive GraphQL coverage of Plain.com: create/read/update customers, query conversations, manage inboxes, update settings, attach files to threads, and subscribe to real-time customer messaging events.
 
 ### Trigger Node for Real-Time Events
-Plain Trigger node subscribes to GraphQL subscriptions for customer messaging events. Enables automation workflows triggered by incoming messages without polling.
+Plain Trigger node subscribes to GraphQL subscriptions for customer messaging events. Enables automation workflows triggered by incoming messages, customer status changes, or conversation updates without polling.
 
 ### TypeScript First
-Fully typed implementation ensures IDE autocomplete and compile-time safety. Reduces integration bugs and improves developer experience.
+Fully typed implementation ensures IDE autocomplete, compile-time safety, and reduced integration bugs. Developers see available fields and operations immediately during workflow building.
 
 ### Published to npm
-Installable as a community node directly in n8n with `npm install`. Receives updates independently of n8n core releases.
+Installable as a community node directly in n8n with `npm install n8n-nodes-plain`. Receives updates independently of n8n core releases and integrates seamlessly with existing workflows.
 
-## Results
+## Setup
 
-- **7 Sections**: API reference, setup, and usage examples
-- **7.5/10 Rating**: Production-ready community contribution
-- **6 Resources Covered**: Full Plain.com feature set
-- **npm Published**: Available to entire n8n community
-- **Open Source**: MIT licensed, accepts community contributions
+Installation via n8n, API credentials, resource documentation, real-world workflow examples, and contribution guidelines are available in the [full repository](https://github.com/702ron/n8n-plain-node).
+
+## License
+
+MIT
 
 ---
 
-*Built by [Ron](https://github.com/702ron) — [View full project →](https://github.com/702ron/n8n-plain-node)*
+*Built by [Ron](https://github.com/702ron) — [View full project with screenshots &rarr;](https://github.com/702ron/n8n-plain-node)*

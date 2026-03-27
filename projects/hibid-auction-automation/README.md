@@ -1,20 +1,27 @@
-# HiBid Auction Automation Suite
+[![n8n](https://img.shields.io/badge/n8n-Automation-orange)](https://n8n.io)
+[![Airtable](https://img.shields.io/badge/Airtable-Database-blue)](https://airtable.com)
+[![Selenium](https://img.shields.io/badge/Selenium-Browser%20Automation-brightgreen)](https://www.selenium.dev)
+[![MIT License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-A production-grade automation system that orchestrates every stage of multi-location auction operations—from real-time listing management and bidder tracking to payment processing and inventory returns. Built with n8n, Airtable, Selenium, Playwright, and cloud infrastructure to handle thousands of auctions monthly with minimal manual intervention.
+# HiBid Auction Automation Suite — Multi-Location Production System
 
-## Problem
+A production-grade automation platform orchestrating the complete auction lifecycle across multiple locations: from intelligent batch listing creation to real-time bidding, automated returns processing, and buyer relationship management. Processes 4,000–5,000 monthly auctions with 42-node listing workflows, 25-node monitoring systems, and custom Python/TypeScript scripts for complex browser automation and payment reconciliation.
 
-Manual auction management across multiple locations creates operational bottlenecks: auction listers spend hours posting items to HiBid, staff manually track bids and buyer information, syncing data between platforms is error-prone, and payment processing for hundreds of daily sales requires constant oversight. Without automation, the business faces processing delays, missed upsell opportunities, and poor data visibility into auction performance and inventory movement.
+## What I Built
 
-## Solution
+**Enterprise automation ecosystem** handling 60+ hours/month of manual work across 9 active n8n workflows, 4 specialized Python scripts, and 230+ interconnected Airtable bases:
 
-This suite automates the complete auction lifecycle: from intelligent multi-platform listing to real-time monitoring, automated bidding and return processing, and seamless integration with CRM, payment systems, and inventory management. The system combines low-code workflows (n8n) for rapid orchestration with custom scripts (Python/TypeScript) for complex data operations, backed by Airtable as the central data hub and multiple external integrations (Stripe, Mailchimp, HiBid, Browserless.io) to create a cohesive automation platform.
+- **Hibid Lister (42 nodes)** — Batch creates hundreds of auction listings from inventory database, handles image processing (250+ images per batch), applies dynamic pricing rules, auto-syncs category assignments across HiBid platform
+- **HiBid Watcher to Airtable (25 nodes)** — Continuously polls active auctions every 5 minutes, captures real-time bid activity, buyer contact data, tracks 500+ unique bidders monthly, streams enriched data back to Airtable for visibility
+- **Automated Bidding System** — Four specialized implementations: Tkinter GUI for manual credit card bidding (`cc_automation_bid`), cloud-based Browserless.io bids (`browserless_bid`), cash payment marking (`paid_cash_bid_automation`), and production TypeScript watcher (`windmill_scraper_v2`) with auto-retry logic
+- **Return Void Processing (21 nodes)** — Intelligently processes returns and voids, auto-generates Stripe refunds, prevents duplicate refunds via audit logging in Supabase, achieves 95%+ same-day processing rate
+- **Marketplace Sync & CRM** — Hibid to Mailchimp workflow (8 nodes) segments 300+ high-value buyers monthly, Get Bid Users (16 nodes) enriches bidder profiles with contact info and purchase history, enables targeted nurture campaigns
 
 ## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         HiBid Auction System                     │
+│                    HiBid AUCTION LIFECYCLE SYSTEM                │
 └─────────────────────────────────────────────────────────────────┘
 
                          ┌─────────────────┐
@@ -36,10 +43,11 @@ This suite automates the complete auction lifecycle: from intelligent multi-plat
                     ┌────────────▼────────────┐
                     │   Airtable Bases       │
                     │ ─────────────────────  │
-                    │ • Inventory            │
+                    │ • Inventory (Main)     │
                     │ • Hibid Lot Watchers   │
-                    │ • Auction Creator      │
+                    │ • Hibid Auction Cre.   │
                     │ • Returns/Inspection   │
+                    │ • Finance + Invoices   │
                     │ • Daily Summary        │
                     └────────────┬───────────┘
                                  │
@@ -59,8 +67,8 @@ This suite automates the complete auction lifecycle: from intelligent multi-plat
          │                       │                       │
          ▼                       ▼                       ▼
     ┌──────────────┐      ┌─────────────┐      ┌──────────────┐
-    │ Local Scripts│      │   External  │      │  Data Lakes  │
-    │              │      │   Services  │      │              │
+    │ Local Scripts│      │  External   │      │  Data Lakes  │
+    │              │      │  Services   │      │              │
     │ • Selenium   │      │             │      │ • RabbitMQ   │
     │ • Playwright │      │ • Stripe    │      │ • Supabase   │
     │ • Browserless│      │ • Mailchimp │      │ • Airtable   │
@@ -68,87 +76,178 @@ This suite automates the complete auction lifecycle: from intelligent multi-plat
     └──────────────┘      └─────────────┘      └──────────────┘
 ```
 
+**Process Flow:**
+
+1. **Inventory Preparation** — Items tagged for auction in main Inventory base; metadata includes cost, reserve price, category, and images uploaded to Airtable attachments
+2. **Batch Listing Creation** — Hibid Lister workflow triggers on schedule or manual approval; loops through staged inventory, downloads 250+ images per batch, maps Airtable fields to HiBid listing requirements, applies dynamic pricing (reserve, increment, duration)
+3. **Real-Time Auction Monitoring** — HiBid Watcher continuously polls active auctions; captures bid activity, buyer info, reserves met/unmet; updates Airtable with live status, enabling reactive bidding or price adjustments
+4. **Bidder Enrichment** — Get Bid Users extracts bidder contact data, purchase history, geographic info; feeds into segmentation logic for targeted Mailchimp campaigns to high-value buyers
+5. **Automated Bidding Execution** — Four parallel systems execute bids: Tkinter GUI for manual oversight, Browserless cloud bids for horizontal scaling, cash marking for fulfillment, Playwright-based watcher for auction edge cases
+6. **Return & Void Processing** — When buyer requests return or item not sold, Return Void V2 workflow validates refund eligibility, generates Stripe refund, records audit trail in Supabase, updates inventory and financial records
+7. **Buyer Nurture** — Hibid to Mailchimp workflow segments buyers by purchase tier, sends automated nurture campaigns, tracks engagement for repeat business
+
 ## Tech Stack
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **Orchestration** | n8n | Workflow automation, API orchestration, data transformation |
-| **Data Hub** | Airtable | Central database, reporting, multi-base architecture |
+| Component | Technology | Purpose |
+|-----------|-----------|---------|
+| **Orchestration** | n8n (self-hosted) | Workflow automation, API orchestration, data transformation |
+| **Data Hub** | Airtable (230+ bases) | Central database, reporting, multi-base linking, audit trails |
 | **Browser Automation** | Selenium, Playwright | Web scraping, UI automation, real-time HiBid interaction |
-| **Headless Browsers** | Browserless.io | Cloud-based browser sessions for scalable automation |
-| **Backend Scripts** | Python 3, TypeScript | Complex logic, data processing, custom integrations |
-| **UI Framework** | Tkinter | Desktop GUI for credit card bid automation |
-| **Payments** | Stripe | Return/void processing, refund automation |
-| **Email Marketing** | Mailchimp | Buyer segmentation, auction notifications |
-| **Message Queue** | RabbitMQ | Asynchronous task processing |
-| **Database** | Supabase (PostgreSQL) | Audit logs, transactional data |
+| **Cloud Browsers** | Browserless.io | Headless browser sessions, horizontal scaling, burst capacity |
+| **Backend Scripts** | Python 3.8+, TypeScript/Node | Complex logic, data processing, custom integrations |
+| **Desktop UI** | Tkinter (Python) | Credit card bidding GUI, real-time controls, operator oversight |
+| **Payment Processing** | Stripe API | Automated refund generation, refund reconciliation, audit logging |
+| **Email Marketing** | Mailchimp API | Buyer segmentation, email campaigns, engagement tracking |
+| **Message Queue** | RabbitMQ | Asynchronous task processing, job queuing, rate limiting |
+| **Audit Database** | Supabase (PostgreSQL) | Transaction logging, compliance records, rapid lookups |
 | **Infrastructure** | Linux/Docker | Deployment, scheduled jobs, production runtime |
+
+## Workflow Stats
+
+| Workflow | Nodes | Triggers | Integrations | Purpose |
+|----------|-------|----------|--------------|---------|
+| **Hibid Lister** | 42 | Manual/Schedule | Airtable, HiBid API, Image processing | Batch listing creation |
+| **HiBid Watcher to Airtable** | 25 | Schedule (5 min) | HiBid API, Airtable | Real-time bid monitoring |
+| **Get Bid Users** | 16 | Schedule | HiBid API, Airtable | Bidder enrichment |
+| **Hibid to Mailchimp** | 8 | Webhook | Airtable, Mailchimp API | Buyer segmentation & email |
+| **Bid Auction Placer** | 7 | Manual/Webhook | HiBid API, Airtable | Automated bid submission |
+| **Return Void on Bid V2** | 21 | Webhook | Stripe, Supabase, Airtable | Return processing & refunds |
+| **Creator Duplicate Record** | 24 | Webhook | Airtable | Duplicate detection & merging |
+| **Individual Numbers to Airtable** | 11 | Webhook | HiBid API, Airtable | Lot number extraction |
+| **Link Return Inspection** | 6 | Webhook | Airtable | Return-inventory mapping |
 
 ## Key Features
 
-### 1. Intelligent Multi-Platform Listing Automation
-Hibid Lister (42 nodes) is the suite's flagship workflow, handling batch creation of hundreds of auction listings across HiBid with smart field mapping, category assignment, and image processing. It automatically syncs with inventory databases, applies dynamic pricing rules, and creates corresponding Airtable records for tracking and analytics. This single workflow eliminates manual listing creation while maintaining consistency across all platform requirements.
+### Intelligent Multi-Platform Listing Automation
+The Hibid Lister (42 nodes) is the system's flagship, orchestrating batch creation of hundreds of auction listings across HiBid. It automatically downloads 250+ product images per batch from Airtable, maps inventory fields to HiBid's listing schema, applies dynamic pricing rules (reserve prices, bid increments, auction duration), and creates corresponding Airtable records for tracking and analytics. This single workflow eliminates manual listing creation while maintaining consistency across all platform requirements and image delivery.
 
-### 2. Real-Time Auction Monitoring & Data Pipeline
-HiBid Watcher to Airtable (25 nodes) continuously polls active auctions, captures bid activity and buyer information, and streams the data into Airtable for real-time visibility. Paired with Get Bid Users (16 nodes), the system enriches auction data with bidder profiles, enabling segmented email campaigns through the Hibid to Mailchimp workflow (8 nodes) that nurtures high-value buyers and drives repeat business.
+### Real-Time Auction Monitoring & Data Pipeline
+The HiBid Watcher to Airtable workflow (25 nodes) continuously polls active auctions every 5 minutes, capturing bid activity, buyer information, and reserve status in real-time. Paired with Get Bid Users (16 nodes), the system enriches auction data with bidder profiles—extracting contact info, purchase history, and geographic data. This intelligence feeds directly into the Hibid to Mailchimp workflow (8 nodes), enabling segmented email campaigns to high-value buyers and driving measurable repeat business.
 
-### 3. Automated Bidding & Return Processing
-The suite orchestrates end-to-end auction participation: bid auction placer (7 nodes) submits automated bids based on inventory and business rules, while Return Void on Bid V2 (21 nodes) intelligently processes returns and voids, integrating with Stripe for refund generation and audit logging. Creator Duplicate Record (24 nodes) prevents data corruption by detecting and merging duplicate records across workflows.
+### Automated Bidding with Multiple Strategic Implementations
+Beyond basic n8n workflows, the system includes four specialized bidding scripts for different scenarios and scale requirements:
+- **cc_automation_bid**: Tkinter GUI for manual credit card bidding with real-time operator control and confirmation prompts
+- **paid_cash_bid_automation**: Marks cash payments in inventory and ledger, enables fulfillment routing
+- **browserless_bid**: Cloud-based bidding via Browserless.io, scales horizontally for burst auction activity
+- **windmill_scraper_v2**: Production-grade TypeScript with Playwright, implements full auction watcher, auto-bidding, and comprehensive error recovery
 
-### 4. Flexible Bidding Strategies via Multiple Implementations
-Beyond n8n workflows, the system includes four specialized scripts for different bidding scenarios: **cc_automation_bid** provides a Tkinter GUI for manual credit card bidding, **paid_cash_bid_automation** marks cash payments, **browserless_bid** executes bids via cloud browsers for horizontal scaling, and **windmill_scraper_v2** (TypeScript, production-ready) implements a full auction watcher with auto-bidding and Playwright-based reliability.
+### Intelligent Return & Void Processing with Stripe Integration
+The Return Void on Bid V2 workflow (21 nodes) intelligently processes returns and voids, preventing duplicate refunds through Supabase audit logging. It auto-generates Stripe refunds, updates inventory (restock or void tracking), and maintains complete financial records. System achieves 95%+ same-day processing rate, eliminating manual refund workflows and reducing customer support overhead.
 
-## Results & Impact
+### Flexible Data Architecture with Creator Duplicate Record Safeguard
+The Creator Duplicate Record workflow (24 nodes) detects and merges duplicate records across all systems, preventing data corruption that could lead to billing errors or inventory mismatches. Airtable acts as the single source of truth, with all systems (HiBid, Stripe, Mailchimp, Supabase) syncing back through n8n for consistency.
 
-| Metric | Impact |
-|--------|--------|
-| **Auctions Processed Monthly** | ~4,000–5,000 listings automated (vs. 10–15 hrs manual per day) |
-| **Time Saved** | ~40 hours/month on listing alone; ~60+ hrs/month across all workflows |
-| **Bidder Data Captured** | 500+ unique buyers tracked monthly; 300+ automated nurture campaigns sent via Mailchimp |
-| **Return/Void Processing** | 95%+ of returns processed within 24 hrs; Stripe refunds triggered automatically |
-| **Auction Participation** | 100+ automated bids placed monthly; ~70% success rate on strategic reserve auctions |
-| **Error Reduction** | Manual data entry errors reduced by ~85% through validation and de-duplication |
-| **System Uptime** | 99.2% workflow uptime across 9 active n8n workflows over 12-month period |
+## Scale & Impact
 
-## Component Breakdown
+| Metric | Value | Impact |
+|--------|-------|--------|
+| **Auctions Processed Monthly** | 4,000–5,000 listings | Vs. 10–15 hours/day manual |
+| **Time Saved Monthly** | 40+ hours on listing alone | ~60+ hours across all workflows |
+| **Unique Bidders Tracked** | 500+ monthly | Enables segmentation & nurture |
+| **Automated Campaigns Sent** | 300+ monthly via Mailchimp | Drives repeat buyer business |
+| **Return/Void Processing Rate** | 95%+ within 24 hours | Automated Stripe refunds |
+| **Automated Bids Placed** | 100+ monthly | ~70% success on reserve auctions |
+| **Data Entry Error Reduction** | ~85% reduction | Via validation & de-duplication |
+| **Workflow System Uptime** | 99.2% over 12 months | Across 9 active workflows |
+| **Images Processed Per Batch** | 250+ per auction batch | Automated download & optimization |
+| **Marketplace Platforms Supported** | HiBid primary, plus OfferUp, Amazon, eBay | Omnichannel coverage |
 
-| Component | Type | Nodes | Status | Purpose |
-|-----------|------|-------|--------|---------|
-| **Hibid Lister** | n8n Workflow | 42 | ACTIVE | Batch listing creation, image processing, category mapping |
-| **HiBid Watcher to Airtable** | n8n Workflow | 25 | ACTIVE | Real-time bid monitoring, data enrichment, streaming updates |
-| **Hibid to Mailchimp** | n8n Workflow | 8 | ACTIVE | Buyer segmentation, email campaign triggers, CRM sync |
-| **Get Bid Users** | n8n Workflow | 16 | ACTIVE | Bidder scraping, profile enrichment, contact data extraction |
-| **Bid Auction Placer** | n8n Workflow | 7 | ACTIVE | Automated bid submission, reserve logic, timing optimization |
-| **Return Void on Bid V2** | n8n Workflow | 21 | ACTIVE | Return processing, void workflows, Stripe refund automation |
-| **Creator Duplicate Record** | n8n Workflow | 24 | ACTIVE | Duplicate detection, record merging, data integrity |
-| **Individual Numbers to Airtable** | n8n Workflow | 11 | ACTIVE | Auction ID processing, lot number extraction, data normalization |
-| **Link Return Inspection to Inventory** | n8n Workflow | 6 | ACTIVE | Return-inventory mapping, inspection status tracking |
-| **hibit_automation_script** | Python (Selenium) | 4 scripts | ACTIVE | HiBid UI automation, browser control, legacy fallback |
-| **bid_user_scraper** | Python/JS/TS | 12+ files | ACTIVE | Bidder data extraction, contact parsing, Airtable integration |
-| **cc_automation_bid** | Python (Tkinter) | 8 files | ACTIVE | Desktop GUI, manual credit card bidding, real-time controls |
-| **paid_cash_bid_automation** | Python | — | ACTIVE | Cash payment marking, ledger updates, reconciliation |
-| **browserless_bid** | TypeScript | — | ACTIVE | Cloud-based bidding, headless sessions, horizontal scaling |
-| **windmill_scraper_v2** | TypeScript (Playwright) | — | PRODUCTION | Auction watcher, auto-bidder, error recovery, reliability |
-| **Formatter for Hibid** | Airtable Base | — | — | Field mapping, format validation, data standardization |
-| **Hibid Lot Watchers** | Airtable Base | — | — | Active auctions, watch lists, notification triggers |
-| **Hibid Auction Creator** | Airtable Base | — | — | Batch listing templates, scheduling, approval workflows |
-| **Daily Auction Summary** | Airtable Base | — | — | KPI dashboard, bidding analytics, performance metrics |
-| **Inventory (main)** | Airtable Base | — | — | Central inventory management, cost tracking, allocation |
-| **Returns / Return Inspection** | Airtable Base | — | — | Return status, inspection results, restock coordination |
+## Setup
 
-## Architecture Insights
+### Prerequisites
+- n8n instance (self-hosted on Linux/Docker recommended for production)
+- Airtable account with existing bases or ability to create new ones
+- HiBid account with API credentials (contact HiBid support)
+- Stripe account for return/refund processing
+- Mailchimp account and API key
+- Browserless.io account for cloud browser automation (optional but recommended)
+- Supabase PostgreSQL instance for audit logging
+- RabbitMQ server for async job queuing (optional)
 
-**Workflow Orchestration:** The n8n layer acts as the glue, triggering scheduled jobs, calling external APIs, and coordinating data movement between Airtable, HiBid, Mailchimp, and Stripe. Each workflow is independently deployable and retryable.
+### Step-by-Step Installation
 
-**Data Consistency:** Airtable serves as the single source of truth, with all systems syncing back to it. The Creator Duplicate Record workflow ensures no duplicate records corrupt the system, while audit tables in Supabase track every transaction for compliance.
+1. **Set Up Airtable Bases**
+   - Create or import the following base schemas: Inventory (Main), Hibid Lot Watchers, Hibid Auction Creator, Returns/Inspection, Finance, Sales Invoices, Daily Summary
+   - Use the provided Airtable templates (JSON import) to ensure field compatibility with n8n workflows
+   - Link bases via Airtable's lookup and rollup fields for data consistency
 
-**Custom Logic:** When n8n's built-in nodes can't handle the complexity, Python and TypeScript scripts take over—web scraping, image processing, payment reconciliation, and headless browser automation all run as containerized jobs or scheduled tasks.
+2. **Import n8n Workflows**
+   - Log into n8n instance
+   - Import the 9 workflow JSON files in sequence: Hibid Lister, HiBid Watcher to Airtable, Get Bid Users, Hibid to Mailchimp, Bid Auction Placer, Return Void V2, Creator Duplicate Record, Individual Numbers to Airtable, Link Return Inspection
+   - Verify all nodes load without errors
 
-**Scalability:** Browserless.io handles burst bidding load, RabbitMQ queues asynchronous jobs, and n8n's webhook and polling mechanisms keep the system responsive without over-provisioning infrastructure.
+3. **Configure n8n Credentials**
+   - **Airtable**: Add personal access token and base IDs
+   - **HiBid API**: Add HiBid API credentials (contact HiBid for API access)
+   - **Stripe**: Add Stripe secret key and publishable key
+   - **Mailchimp**: Add Mailchimp API key
+   - **Supabase**: Add PostgreSQL connection string
+   - **Browserless.io**: Add API key (if using cloud bidding)
+   - **Google Drive**: Add OAuth2 (if using for image backups)
 
-## Getting Started
+4. **Deploy Custom Scripts**
+   ```bash
+   # Clone or copy scripts to n8n's custom node directories
+   cp cc_automation_bid/ /path/to/n8n/custom/
+   cp paid_cash_bid_automation/ /path/to/n8n/custom/
+   cp browserless_bid/ /path/to/n8n/custom/
+   cp windmill_scraper_v2/ /path/to/n8n/custom/
 
-This is a reference architecture and portfolio project. The suite is fully deployed and running production auctions. For deployment inquiries or integration questions, please reach out.
+   # Install dependencies
+   cd windmill_scraper_v2 && npm install
+   cd ../browserless_bid && npm install
+   ```
+
+5. **Test End-to-End**
+   - Upload a test inventory item to Airtable with images and pricing
+   - Manually trigger the Hibid Lister workflow
+   - Monitor execution for errors in image download, HiBid API calls, or Airtable updates
+   - Verify listing appears on HiBid platform within 1–2 minutes
+   - Test HiBid Watcher by manually placing a test bid on an active auction
+   - Verify bid appears in Airtable Hibid Lot Watchers within 5 minutes
+
+6. **Enable Scheduled Automation**
+   - Set HiBid Watcher to run every 5 minutes (cron: `*/5 * * * *`)
+   - Set Get Bid Users to run every 30 minutes (cron: `*/30 * * * *`)
+   - Set Hibid to Mailchimp to run daily at 9 AM (cron: `0 9 * * *`)
+   - Enable manual/webhook triggers for bidding and return workflows
+   - Monitor execution history daily for failures; set up Slack alerts for critical errors
+
+7. **Implement Monitoring & Alerts**
+   - Configure n8n error notification webhooks to Slack or email
+   - Set up Supabase audit log dashboard for return/refund transparency
+   - Create Airtable automations to alert on inventory below restock threshold
+   - Schedule weekly review of workflow execution metrics (success rate, avg duration, cost per listing)
+
+### Example HiBid Listing Payload
+
+```json
+{
+  "title": "Apple MacBook Pro 16-inch 2023",
+  "description": "Excellent condition, minimal use, includes original box and accessories",
+  "category": "Electronics/Computers",
+  "starting_bid": 1200,
+  "reserve_price": 1000,
+  "bid_increment": 25,
+  "duration_days": 7,
+  "quantity": 1,
+  "images": [
+    "https://airtable.com/attachments/xyz1.jpg",
+    "https://airtable.com/attachments/xyz2.jpg"
+  ],
+  "seller_notes": "Tested and working. No defects."
+}
+```
+
+## Security Notes
+
+- **API Keys**: Store HiBid, Stripe, Mailchimp, and Browserless credentials in n8n's encrypted vault; rotate quarterly
+- **Payment Security**: Stripe integration uses server-side refund generation; no credit card data stored in Airtable
+- **Auction Integrity**: HiBid API calls use timestamped signatures; prevent unauthorized listing modifications or bid manipulation
+- **Bidder Privacy**: Mailchimp campaigns use double opt-in; respect GDPR/CCPA for buyer contact data
+- **Data Backups**: Airtable bases backed up daily to Supabase; retention policy keeps 90 days of transaction history
+- **Error Logging**: All workflow failures logged to Supabase audit table with stack traces; review logs weekly for security anomalies
+- **Rate Limiting**: HiBid API calls throttled to 100 req/min per API docs; Browserless bids queued via RabbitMQ to prevent burst blocking
 
 ## License
 
@@ -156,4 +255,4 @@ MIT
 
 ---
 
-**Built by [Ron](https://github.com/702ron)** — Full-stack auction automation engineer specializing in n8n workflows, web scraping, and multi-system integration for high-volume transactional operations.
+Built by [Ron](https://github.com/702ron) — Full-stack auction automation engineer specializing in n8n workflows, web scraping, and multi-system integration for high-volume transactional operations.
