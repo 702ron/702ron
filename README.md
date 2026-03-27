@@ -19,7 +19,72 @@ Everything listed here runs (or has run) in production — not demos, not tutori
 
 ---
 
-## AI & Intelligent Agents
+## Featured Projects
+
+<table>
+<tr>
+<td width="50%">
+
+### [AI Label Designer](./projects/ai-label-designer)
+**[Live Demo](https://labelwizard.702market.com/)** · **[GitHub](https://github.com/702ron/1932-label-wizard)**
+
+Full-stack AI image generation app — 4-step wizard that creates custom whiskey labels with AI-generated logos, backgrounds, and photorealistic bottle mockups.
+
+`React` `FastAPI` `TypeScript` `Google Gemini` `OpenRouter` `Redis` `PostgreSQL` `MinIO`
+
+</td>
+<td width="50%">
+
+### [Product Info Lookup API](./projects/product-info-lookup)
+**[GitHub](https://github.com/702ron/product-info-lookup)**
+
+Universal product data retrieval across Amazon, Walmart, Target, and Home Depot. Auto-detects identifiers, queries 6 APIs, AI-powered categorization.
+
+`n8n` `NocoDB` `Google Gemini` `GPT-4` `Firecrawl` `Airtable`
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### [Airtable Chat Support Agent](./projects/airtable-chat-agent)
+**[GitHub](https://github.com/702ron/airtable-chat-support-agent)**
+
+AI-powered natural language interface for business data. Converts English queries into structured lookups across Inventory, Sales, and Returns. Barcode image recognition.
+
+`n8n` `GPT-4` `Airtable` `PostgreSQL` `Open WebUI`
+
+</td>
+<td width="50%">
+
+### [Refund Returns Processing](./projects/refund-returns-system)
+**[GitHub](https://github.com/702ron/refund-returns-processing)**
+
+End-to-end returns automation with 7-step processing, 6 return types, multi-location support. RabbitMQ queuing ensures zero lost transactions.
+
+`n8n` `RabbitMQ` `Stripe API` `Airtable` `Browserless`
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+
+### [n8n Plain.com Node](./projects/n8n-plain-node)
+**[GitHub](https://github.com/702ron/n8n-plain-node)** · **[npm](https://www.npmjs.com/package/n8n-nodes-plain)**
+
+Open-source n8n community node for Plain.com customer support — GraphQL integration, 6 resources, real-time event triggers. Published to npm.
+
+`TypeScript` `n8n` `GraphQL`
+
+</td>
+</tr>
+</table>
+
+---
+
+## All Projects
+
+### AI & Intelligent Agents
 
 | Project | What It Does | Stack |
 |---------|-------------|-------|
