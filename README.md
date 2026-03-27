@@ -90,7 +90,81 @@ A 4+ year, continuously evolving Airtable platform managing inventory, finance, 
 
 ---
 
-## Additional Projects
+## More Projects
+
+### [Nostradamus AI — Historical Prophecy Analysis Platform](./projects/nostradamus-ai)
+
+**Full-stack AI application analyzing Nostradamus' quatrains using NLP, machine learning, knowledge graphs, and real-time streaming.**
+
+83 Python backend modules and 35 TypeScript frontend components. Features custom archaic French NLP processing, Neo4j knowledge graphs mapping entities across prophecies and historical events, ML-based pattern recognition with confidence scoring, 11 web scrapers (Wikipedia, Sacred Texts, Internet Archive), and real-time WebSocket analysis streaming. Production-deployed with Docker, Nginx, and JWT auth.
+
+**Tech:** FastAPI | React | TypeScript | PostgreSQL | Neo4j | spaCy | scikit-learn | Docker | WebSockets
+
+[View full case study &rarr;](./projects/nostradamus-ai)
+
+---
+
+### [Stripe Payment & Refund Automation](./projects/stripe-payment-automation)
+
+**Reliable, multi-system payment processing with RabbitMQ message queuing, automated refunds, and comprehensive audit logging.**
+
+Airtable triggers a return → RabbitMQ queues the event → n8n processes the void on the auction platform via Browserless → Stripe issues the refund → Airtable logs the result. Multiple entry points: 21-node n8n workflow, Python GUI (Tkinter), and JavaScript scripts. Message queuing ensures zero lost transactions even during system outages.
+
+**Tech:** n8n | Stripe API | RabbitMQ | Airtable | Browserless.io | Python | JavaScript
+
+[View full case study &rarr;](./projects/stripe-payment-automation)
+
+---
+
+### [Multi-Platform Marketplace Listing Automation](./projects/marketplace-listing-automation)
+
+**Automated listing creation and management across HiBid, OfferUp, eBay, Amazon, and Liquidation.com.**
+
+A 42-node n8n Lister workflow orchestrates multi-platform publishing. Selenium and Playwright scripts handle image uploads (250+ per auction). Python formatters convert retail manifests into marketplace-ready listings. Cloud-based automation via Browserless.io and Windmill enables scaling without local browser overhead. Airtable tracks listing status across all platforms.
+
+**Tech:** n8n | Python | TypeScript | Selenium | Playwright | Browserless.io | Airtable
+
+[View full case study &rarr;](./projects/marketplace-listing-automation)
+
+---
+
+### [n8n Mailchimp Automation Suite](./projects/n8n-mailchimp-automation-suite)
+
+**Full-lifecycle email marketing automation — from customer acquisition to campaign delivery to list hygiene.**
+
+Five interconnected n8n workflows that sync auction buyers to Mailchimp, segment by purchase behavior, generate automated campaigns with MJML templates, deliver via Mailchimp API, and clean unsubscribed contacts weekly. Airtable tracks sent emails, newsletter subscribers, and marketing performance metrics.
+
+**Tech:** n8n | Mailchimp API | Airtable | MJML | Gmail
+
+[View full case study &rarr;](./projects/n8n-mailchimp-automation-suite)
+
+---
+
+### [Auction Management Web Application](./projects/auction-management-webapp)
+
+**Django-based platform centralizing auction creation, HiBid uploads, bidder management, and inventory operations.**
+
+Django 5.0 application with 5 major management scripts (37K+ lines each) handling auction formatting, HiBid uploads via Selenium, void/refund processing, and Airtable synchronization. Dockerized with Gunicorn + Nginx for production deployment. Processes 1,000+ auctions monthly with integrated duplicate detection and progress tracking.
+
+**Tech:** Django | Python | PostgreSQL | Docker | Nginx | Selenium | Airtable API | pandas
+
+[View full case study &rarr;](./projects/auction-management-webapp)
+
+---
+
+### [n8n Error Monitoring & Self-Healing System](./projects/n8n-error-monitoring)
+
+**Centralized error handling for 228+ n8n workflows with automatic retry, self-healing, and escalation.**
+
+All production workflows feed errors to a central handler that logs to Airtable with full metadata. A daily retry job re-processes failures automatically. Specialized self-healing workflows fix common issues (location sync failures, duplicate records) without human intervention. Unresolved errors escalate via email. Maintains 85%+ auto-recovery rate across the entire automation fleet.
+
+**Tech:** n8n | Airtable | Gmail | Error handling patterns
+
+[View full case study &rarr;](./projects/n8n-error-monitoring)
+
+---
+
+## Standalone Repos
 
 ### [AI Label Designer](https://github.com/702ron/1932-label-wizard) | [Live Demo](https://labelwizard.702market.com/)
 
