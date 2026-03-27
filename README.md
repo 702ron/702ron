@@ -164,6 +164,78 @@ All production workflows feed errors to a central handler that logs to Airtable 
 
 ---
 
+### [Browser Automation Toolkit](./projects/browser-automation-toolkit)
+
+**Production browser automation across Selenium, Playwright, Puppeteer, and Browserless.io — from local scripts to cloud-based execution.**
+
+Battle-tested across 7+ automation projects handling auction operations. Selenium scripts process 250+ images per auction. Playwright on Windmill handles cloud-based watching and auto-bidding. Puppeteer scrapes watcher lists. Browserless.io eliminates local browser overhead entirely. Includes a self-hosted Browserless service with Docker and Python GUIs for manual override.
+
+**Tech:** Python | Selenium | Playwright | Puppeteer | Browserless.io | TypeScript | Docker
+
+[View full case study &rarr;](./projects/browser-automation-toolkit)
+
+---
+
+### [CSV & Data Pipeline Tools](./projects/csv-data-pipeline-tools)
+
+**ETL toolkit converting retail manifests, inventory files, and auction data into marketplace-ready formats.**
+
+A 46KB Macy's manifest converter handles multi-stage processing (XLS → CSV → Google Sheets → marketplace upload) with lot number reconciliation. A pallet grouping tool processes 81KB+ inventory files into warehouse-specific batches. Includes image-prioritized formatters for HiBid, ZPL barcode label converters for Zebra printers, and auction CSV exporters.
+
+**Tech:** Python | pandas | Google Sheets API | Node.js | CSV/XLS Processing
+
+[View full case study &rarr;](./projects/csv-data-pipeline-tools)
+
+---
+
+### [Business Metrics Dashboard](./projects/business-metrics-dashboard)
+
+**Real-time auction analytics dashboard with clerk performance tracking, count metrics, and date-based reporting.**
+
+React/TypeScript SPA pulling from dual backends (Airtable + Supabase). Features clerk performance tables, count-based analytics, report generation, and login authentication. Also includes a separate check-in web app for location-based operations with vehicle selection, phone verification, and payment messaging.
+
+**Tech:** React | TypeScript | Vite | Tailwind CSS | Airtable API | Supabase
+
+[View full case study &rarr;](./projects/business-metrics-dashboard)
+
+---
+
+### [n8n Custom Node & Frontend Builder](./projects/n8n-custom-nodes)
+
+**Custom n8n ecosystem tools — from open-source community nodes to a full workflow-to-portal conversion engine.**
+
+An open-source Plain.com GraphQL node contributed to the n8n community, plus a 47-file full-stack application that parses n8n workflows and generates interactive frontend forms and portals. The builder includes an Express backend with auth, rate limiting, and validation middleware, a React frontend for portal rendering, and a workflow parsing engine that transforms webhook and form triggers into deployable UIs.
+
+**Tech:** TypeScript | n8n API | React | Express | GraphQL
+
+[View full case study &rarr;](./projects/n8n-custom-nodes)
+
+---
+
+### [Airtable AI Chatbot — Chrome Extension](./projects/airtable-ai-chatbot)
+
+**Chrome extension that injects an AI-powered chat interface into any Airtable page for natural language data queries.**
+
+Manifest V3 extension with a compiled n8n Chat SDK (355KB bundle) that connects to backend AI agents via webhook. The agents (88+ workflow nodes across 5 specialized tools) can search customers, look up lot numbers, find invoices, and query inventory — all through plain English. Custom-styled to blend with Airtable's UI.
+
+**Tech:** Chrome Extension (Manifest V3) | JavaScript | n8n | OpenAI GPT-4 | Airtable API
+
+[View full case study &rarr;](./projects/airtable-ai-chatbot)
+
+---
+
+### [Job Scraper with AI Scoring](./projects/job-scraper-ai-scoring)
+
+**Multi-platform job scraper with AI-powered relevance scoring across 8+ job boards.**
+
+Flask web app with scrapers for Indeed, Glassdoor, LinkedIn, ZipRecruiter, Google Jobs, and more. An AI scoring module evaluates job descriptions against customizable criteria and ranks by relevance. SQLite database tracks 2MB+ of historical job data. JSearch API integration for supplemental listings.
+
+**Tech:** Python | Flask | SQLite | OpenAI | Poetry
+
+[View full case study &rarr;](./projects/job-scraper-ai-scoring)
+
+---
+
 ## Standalone Repos
 
 ### [AI Label Designer](https://github.com/702ron/1932-label-wizard) | [Live Demo](https://labelwizard.702market.com/)
